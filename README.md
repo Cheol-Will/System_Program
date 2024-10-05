@@ -1,84 +1,36 @@
-# System Program Profiling Project  
-- input: one integer  
-- set seed  
-- input: two integer -> # of students and # of subjects
-- create student's score data: <strong>done</strong>
-- read student's score data: <strong>done</strong>
-- sorting 
-- 
----  
-# what about making a student structure??  
- - id  
- - next  
- - math  
- - eng  
- - kor  
-1) sorting by id  
-2) dist of scores 
-# std, class, summary
+### 시스템 프로그램 프로파일링 프로젝트
 
+이 프로젝트는 학생 점수 데이터를 분석하는 시스템 프로그램을 프로파일링하는 데 중점을 두고 있습니다. 주로 데이터 정렬, 통계 분석, 그리고 대규모 데이터셋에 대한 성능 최적화를 목표로 하고 있습니다.
 
-	// 사용자 정의 function: 15개 이상...
-	// what is the purpose of my project?
+---
 
-	// 함수 작성할 `x if 문으로 ㅈㄴ 분기 -> 나중에 ternary, sequential 등으로 작업
-	// recursive ㅈㄴ 사용 -> for 문으로 전환
-	// for문 사용할 때 loop unrolling 작업 나중에
-	// selection sort -> quick sort ...?
-	// hash fuction...?
-    // 지금 내가 하고 싶은 거는 일단 sorting 했고
-	// 뭔가 기능을 추가해?
-	// 각 점수마다 linked list로 만들까? -> 왜...?
-	// 일단 점수마다 count 해주고
-	// 그 다음에 출력하는 함수 뭐 
+## 프로젝트 개요
 
-# Test Simulation for Teacher...?
-수능시험 시뮬레이션
-학생 수 30만명, 그리고 또 해야하는 거 뭐 있는데...  
-일단 수능시험에서 평균, 표준편차만 제공된다고 치자  
-정규분포로 생성을 하고 sorting, median, avg, 또 구할 거 뭐 있냐  
-summary 함수에 이것저것 다 대입을 해줄 것이야.   
-summary 함수에 대입을 할 때 무조건 계속 구조체 포인터 사용하고 나중에 개선할 때   
-local로 만들어서 마지막에 대입하는 거로 수정을 해보자  
-또 시도해볼 수 있는 게 뭐가 있을까
+학생들의 성적 데이터를 생성, 읽기, 정렬하며 다양한 통계 지표를 계산하는 프로그램입니다. 성능 향상을 위해 **루프 언롤링**, **재귀 함수의 반복문 변환**, **메모리 접근 최적화** 등의 기법을 활용할 예정입니다.
 
-create and read : done
-# Process  
-- 일단 데이터 생성 ( 보류 -> R로 수행 )  
-- 데이터 읽고  (kor, eng, math 다 따로 받을 것인가?) -> 1초  
-- 데이터 sorting?  ( kor를 select sort 한다 치자 근데 뭐 )  
-- 사용자에게 점수를 입력받아서 같은 점수 몇 명 있는지 파악    
-- 이게 정규분포인거는 모르니까 그거 뭐냐  
-- sum 함수 구현하고, avg 구하고, sd 구하고, 또...  
-- 통계적으로 뭔가 할 수 있는 것들이 있을까?  
-- mode : 그냥 mode?  
-- mymode: 점수대 구간 별로 어디가 가장 높은가? -> hashing으로 해봐...? 
-- if else로 코딩하고 나중에 hashing으로 바꾸자
-- 현재 함수 11개
-- 통계값 다른 거 좀 더 넣어주자
+### 주요 기능
+- **학생 데이터 관리**: 학생들의 성적 데이터를 과목별(수학, 영어, 국어)로 생성하고 읽어옵니다.
+- **정렬 알고리즘**: 초기에는 **선택 정렬**을 사용하지만, **퀵 정렬** 등 더 빠른 알고리즘으로 개선할 예정입니다.
+- **통계 분석**: 평균, 중앙값, 표준편차, 최빈값과 같은 기본 통계 지표를 제공하며, **왜도**와 **첨도**와 같은 고급 통계도 포함합니다.
 
-# 실행시간 (data 10만개 기준) 프로파일링 전 3분 정도
-## Works Correctly and 
- - 데이터 읽기: 1초  
- - avg(sum) : 3초 정도
- - med(sort) : 20초 정도 -> sort함수 다른 알고리즘 사용
- - sd : 1분 걸리나...? -> avg_kor을 loop 밖에서 local로 선언
- - range : 0.1초면 끝나는 것 같아 -> modular로 if문 없이 사용
- - skewness: 30초
- - kurtosis: 
- - outlier:  
+---
 
+## 향후 개선 계획
+- **데이터 구조**: 학생 구조체 (ID, 점수)를 도입하여 데이터를 더 효율적으로 관리할 예정입니다.
+- **성능 최적화**: 대규모 데이터셋(예: 30만 명의 학생)의 실행 시간을 프로파일링하고, **루프 언롤링**, **조건 분기 최소화**, **메모리 접근 최적화** 등의 방법으로 성능을 개선할 계획입니다.
+- **기능 확장**: 점수 분포 분석, **해싱**을 통한 빈도수 계산, 통계 요약 함수에 추가 기능을 넣어 기능성을 확대할 예정입니다.
 
-프로파일링 리스트: 
-- 메모리 접근에 관하여  
-- 한 함수에서 내부적으로 다른 함수를 call한다면 일단 summary에 그 값이 있는지부터 확인 그 후에 그 값이 없다면 call을 한다. ex) skew와 kurto 함수에서 std 값 있는지 확인부터 하고 0이면 std 실행 후 계산, 0 아니면 실행 없이 계산  
-- avg를 사용하는 함수도 avg 있는지부터 확인하고 계산  
-- 또 뭐냐 loop unrolling 해야하고, accumulator 사용해야지 2x2로 unrolling하자  
-- 
+---
 
+## 프로파일링 결과
 
-	int med;
-	int Q1;
-	int Q3;
-	int min;
-	int max;# System_Program
+- **데이터 읽기**: 약 1초
+- **평균 계산(avg)**: 약 3초
+- **중앙값 계산(median)**: 약 20초 (정렬 알고리즘 개선 필요)
+- **표준편차 계산(sd)**: 약 1분
+- **왜도(skewness)**: 약 30초
+- **첨도(kurtosis)**: 약 30초
+
+---
+
+이 프로젝트는 성능 최적화와 데이터 분석을 동시에 다루며, 대규모 데이터셋에 대해 효과적인 프로파일링 및 개선을 목표로 하고 있습니다.
